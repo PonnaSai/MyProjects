@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/StartupScript.js"></script>
+    <link href="Scripts/StyleSheet.css" rel="stylesheet" />
+</head>
+<body ng-app="MyModule">
+<!--    <div ng-controller="twoSortingcntrl">
+    
+    <br />
+    <table border="1">
+        <thead>
+            <tr>
+                <th ng-click="sortData('name')">Name <div ng-class="getSort('name')"></div></th>
+                <th ng-click="sortData('DateofBirth')">Date of Birth<div ng-class="getSort('DateofBirth')"></div></th>
+                <th ng-click="sortData('Gender')">Gender <div ng-class="getSort('Gender')"></div></th>
+                <th ng-click="sortData('Salary')">Salary <div ng-class="getSort('Salary')"></div></th>
+               </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="empl in emp | orderBy :sortColumn :reverseSort" >
+                <td>{{empl.name }}</td>
+                <td>{{empl.DateofBirth }}</td>
+                <td>{{empl.Gender}}</td>
+                <td>{{empl.Salary }}</td>
+            </tr>
+
+        </tbody>
+        
+    </table>
+
+</div><br /><br />-->
+
+    <!--Search the records based on the text search in text box -->
+    
+        
+    
+    <div ng-controller="Searchcntrl">
+         Search
+        <input type="text" placeholder="Enter Name to Search" ng-model="SearchText.EmpName" />
+         <input type="text" placeholder="Enter City to Search" ng-model="SearchText.City" />
+        <input type ="checkbox" ng-model="exactMatch" /> Exact Match
+        <br /> <br />
+        <!--{{message}}-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Sno</th>
+                    <th>Employee Name</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>City</th>
+                </tr>
+                </thead>
+            <tbody>
+                <tr ng-repeat="srch in search1| filter:SearchText:exactMatch">
+                    <td>{{srch.Sno }}</td>
+                    <td>{{srch.EmpName}}</td>
+                    <td>{{srch.Gender}}</td>
+                    <td>{{srch.Salary }}</td>
+                    <td>{{srch.City}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

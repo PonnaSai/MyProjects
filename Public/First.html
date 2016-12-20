@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="./Scripts/StartupScript.js"></script>
+    <link href="./Scripts/StyleSheet.css" rel="stylesheet" />
+</head>
+<body ng-app="MyModule">
+
+    <div ng-controller="Mycontroller">
+        <!-- Below Two Tables include the example of Two way binding to understand ng-model -->
+        <table>
+            <tr>
+                <td>
+                    First Name :
+                </td>
+                <td>
+                    <input type ="text" ng-model ="employee.FirstName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name :
+                </td>
+                <td>
+                    <input type ="text" ng-model ="employee.LastName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Role :
+                </td>
+                <td>
+                    <input type ="text" ng-model ="employee.Role" />
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td>
+                    First Name :
+                </td>
+                <td>
+                    {{ employee.FirstName }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Last Name :
+                </td>
+                <td>
+                    {{ employee.LastName }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Role :
+                </td>
+                <td>
+                    {{ employee.Role }}
+                </td>
+            </tr>
+        </table>
+      
+    </div>
+    <br />
+    <!-- below Div is an example of Ng- Repeat Control-->
+    <div ng-controller ="RepeaterCntrlExp">
+         <table border ="1">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+             <tbody>
+                 <tr ng-repeat ="emp in employeeDetails">
+                     <td>{{emp.FirstName}}</td>
+                     <td>{{emp.LastName}}</td>
+                     <td>{{emp.Gender}}</td>
+                     <td>{{emp.Salary}}</td>
+                 </tr>
+             </tbody>
+        </table>
+    </div>
+    <!--Nested Repeater Example -->
+    <div ng-controller ="NestedRepeaterExp">
+     <ul>
+         <li ng-repeat="Countries in CountryList">
+             {{ Countries.CountryName }} - Parent Index = {{ $index }}
+             <ul>
+                 <li ng-repeat ="City in Countries.Cities"> {{ City.Name }} </li>
+             </ul>
+         </li>
+     </ul>
+
+ </div>
+    <!--Handling the Events -->
+    <div ng-controller ="HandlingEvent">
+    <table border ="1">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+            <th>Likes/Dislikes</th>               
+       </tr>
+      </thead>
+        <tbody>
+            <tr ng-repeat="tech in techm">
+                <td>{{tech.Name}}</td>
+                <td>{{tech.Likes}}</td>
+                <td>{{tech.Dislikes}}</td>
+                <td>
+                    <input type="Button" value ="Likes" ng-click="IncrementLikes(tech)" />
+                    <input type="Button" value ="DisLikes" ng-click="IncrementDisLikes(tech)" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <br /> 
+        <!--Filters Examples -->
+   
+    <div ng-controller ="FilterExample" style="margin-left:330px; margin-top :-280px">
+        <h2>Filter Example</h2>
+       Rows to Display
+        <input type ="number" step="1" min ="0" max="5" ng-model="rowlimit" />
+        <br /> 
+        <br />
+        
+        <table border ="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Salary</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="emp in Filter | limitTo : rowlimit">
+                    <td> {{emp.name | uppercase }}</td>
+                    <td>{{emp.DateofBirth | date :"dd/MM/yyyy" }}</td>
+                    <td>{{emp.Gender| lowercase }}</td>
+                    <td>{{emp.Salary| number :2}}</td>
+                    <td>{{emp.Salary| currency }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br /> <br /><br /><br />
+    <!-- Sorting Example -->
+<div ng-controller="Sortingcntrl" style="margin-left:730px; margin-top :-280px" >
+     <h2>Sorting Example</h2>
+    Sort by <select ng-model="sortColumn">
+        <option value="name">Name Asc</option>
+        <option value="DateofBirth">Date of Birth Asc</option>
+        <option value="Gender">Gender Asc</option>
+        <option  value="-Salary"> Salary Desc</option>
+
+    </select>
+    <br />
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Salary</th>
+               </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="empl in emp |orderBy : sortColumn">
+                <td>{{empl.name }}</td>
+                <td>{{empl.DateofBirth }}</td>
+                <td>{{empl.Gender}}</td>
+                <td>{{empl.Salary }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

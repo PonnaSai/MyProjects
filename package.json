@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/PonnaSai/MyProjects/issues"
   },
-  "homepage": "https://github.com/PonnaSai/MyProjects#readme"
+  "homepage": "https://github.com/PonnaSai/MyProjects#readme",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "express": "^4.14.0"
+  }
 }
